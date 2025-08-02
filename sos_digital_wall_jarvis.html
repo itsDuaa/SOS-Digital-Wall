@@ -1,0 +1,3672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS - Where Expertise Meets Empathy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Variables - Enhanced Blue-White Gradient Theme */
+        :root {
+            --primary-dark: #1e3a8a;
+            --primary: #3b82f6;
+            --primary-light: #93c5fd;
+            --secondary: #e0f2fe;
+            --accent: #f59e0b;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #e2e8f0;
+            --dark-gray: #334155;
+            --black: #0f172a;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            
+            /* Enhanced Gradient Colors */
+            --deep-teal: #0c4a6e;
+            --ocean-teal: #0284c7;
+            --gold: #fbbf24;
+            --mint: #a7f3d0;
+            --beige: #fef3c7;
+            --coral: #f472b6;
+            --purple: #8b5cf6;
+            --emerald: #10b981;
+        }
+
+        /* Global Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #f0f9ff 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Enhanced Button Styles with Special Effects */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transition: width 0.6s, height 0.6s;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+            background: linear-gradient(135deg, var(--ocean-teal) 0%, var(--primary) 100%);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Sparkle Effect for Buttons */
+        .btn:active {
+            animation: sparkle 0.6s ease-out;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .btn::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            opacity: 0;
+            font-size: 1.2rem;
+            animation: sparkleFloat 2s infinite;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-10px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Header and Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(224,242,254,0.95) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-gray);
+            position: relative;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--ocean-teal));
+        }
+
+        /* Enhanced Empathy Quest Button */
+        .nav-links a.empathy-quest {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            animation: questGlow 3s ease-in-out infinite alternate;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+        }
+
+        .nav-links a.empathy-quest:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        @keyframes questGlow {
+            from { box-shadow: 0 0 15px rgba(244, 114, 182, 0.5); }
+            to { box-shadow: 0 0 25px rgba(139, 92, 246, 0.7); }
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--ocean-teal));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Hero Section with Enhanced Gradients */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 138, 0.9) 0%, 
+                rgba(59, 130, 246, 0.8) 25%, 
+                rgba(147, 197, 253, 0.7) 50%, 
+                rgba(224, 242, 254, 0.8) 75%, 
+                rgba(255, 255, 255, 0.9) 100%);
+            background-attachment: fixed;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--coral), var(--purple));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--coral), var(--purple));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        /* Ask/Browse Advice Sections */
+        #ask, #browse {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .advice-thread {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 30px;
+            border-left: 4px solid var(--primary);
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .advice-thread:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .advice-thread .question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        .advice-thread .answer {
+            font-style: italic;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Volunteers Section */
+        .volunteer-profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .volunteer-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .volunteer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .volunteer-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .volunteer-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .volunteer-details {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .volunteer-form-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .volunteer-form-container h2 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .volunteer-form-container p {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .volunteer-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .volunteer-form .form-group {
+            margin-bottom: 25px;
+        }
+
+        .volunteer-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .volunteer-form input,
+        .volunteer-form select,
+        .volunteer-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .volunteer-form input:focus,
+        .volunteer-form select:focus,
+        .volunteer-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .volunteer-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .interest-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .interest-checkbox input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Empathy Quest Section */
+        .empathy-quest-section {
+            background: linear-gradient(135deg, 
+                var(--primary-dark) 0%, 
+                var(--primary) 25%, 
+                var(--coral) 75%, 
+                var(--purple) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .empathy-quest-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-size="12" fill="white" opacity="0.1" text-anchor="middle">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+        }
+
+        .empathy-quest-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .empathy-quest-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .empathy-quest-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .quest-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .quest-feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quest-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .quest-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .quest-launch-button {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            color: var(--white);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quest-launch-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(244, 114, 182, 0.6);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 2000;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-chat:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+            color: var(--dark-gray);
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--gray);
+            background: var(--light-gray);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 25px;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+            transition: var(--transition);
+            z-index: 1999;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 15px 20px;
+            background: var(--secondary);
+            border-radius: 15px;
+            align-self: flex-start;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Wellbeing Timer */
+        .timer-display {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            z-index: 999;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .timer-display:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .timer-display.hidden {
+            display: none;
+        }
+
+        /* Wellbeing Overlay */
+        .wellbeing-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 138, 0.95) 0%, 
+                rgba(139, 92, 246, 0.95) 100%);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .wellbeing-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .wellbeing-modal {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            color: var(--dark-gray);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .wellbeing-overlay.active .wellbeing-modal {
+            transform: scale(1);
+        }
+
+        .wellbeing-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+            color: var(--coral);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .wellbeing-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .wellbeing-message {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        .wellbeing-time {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--coral);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .wellbeing-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .wellbeing-btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wellbeing-continue {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .wellbeing-continue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 132, 199, 0.6);
+        }
+
+        .wellbeing-break {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+        }
+
+        .wellbeing-break:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Game Panel Styles */
+        .game-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 90%;
+            max-width: 800px;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            z-index: 3000;
+            transition: right 0.5s ease;
+            overflow-y: auto;
+            border-left: 4px solid var(--primary);
+        }
+
+        .game-panel.active {
+            right: 0;
+        }
+
+        .panel-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .avatar-section {
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary) 0%, #ffffff 100%);
+            border-bottom: 2px solid var(--gray);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar.orb-1 {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .avatar.orb-2 {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .avatar.orb-3 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            box-shadow: 0 8px 25px rgba(244, 114, 182, 0.4);
+        }
+
+        .avatar.orb-4 {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .avatar:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .avatar-pulse {
+            animation: avatarPulse 1s ease-in-out;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .avatar-progress {
+            margin-top: 20px;
+        }
+
+        .progress-bar-container {
+            background: var(--gray);
+            border-radius: 15px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--coral) 0%, var(--purple) 100%);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+        }
+
+        .game-tabs {
+            display: flex;
+            background: var(--light-gray);
+            border-bottom: 2px solid var(--gray);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn:hover {
+            background: var(--secondary);
+        }
+
+        .game-tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .game-tab-content.active {
+            display: block;
+        }
+
+        .quest-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .quest-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .quest-action {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .quest-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .quest-reward {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.98) 100%);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .volunteer-form .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-container {
+                width: 90%;
+                right: 5%;
+            }
+
+            .game-panel {
+                width: 100%;
+                max-width: none;
+            }
+
+            .wellbeing-modal {
+                padding: 30px 20px;
+            }
+
+            .wellbeing-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .wellbeing-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 4000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .dice {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+            margin: 20px auto;
+            box-shadow: 0 8px 25px rgba(244, 114, 182, 0.4);
+            transition: var(--transition);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Post Styles */
+        .post-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-box textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            padding: 15px;
+            resize: vertical;
+            font-family: inherit;
+            margin-bottom: 15px;
+        }
+
+        .post-btn {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
+        }
+
+        .post-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Game Styles */
+        .arcade-game {
+            text-align: center;
+        }
+
+        .game-canvas {
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .direction-controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 150px;
+            margin: 20px auto;
+        }
+
+        .direction-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .direction-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .direction-btn[data-direction="up"] { grid-column: 2; }
+        .direction-btn[data-direction="left"] { grid-column: 1; grid-row: 2; }
+        .direction-btn[data-direction="down"] { grid-column: 2; grid-row: 2; }
+        .direction-btn[data-direction="right"] { grid-column: 3; grid-row: 2; }
+
+        /* Vault Styles */
+        .vault-door {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vault-door:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .vault-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            50% { transform: translateX(0%) translateY(0%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Enhanced Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: var(--white);
+            font-weight: 600;
+            z-index: 5000;
+            max-width: 350px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%);
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%);
+        }
+
+        .notification.level-up {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+            animation: levelUpGlow 1s ease-in-out;
+        }
+
+        @keyframes levelUpGlow {
+            0%, 100% { box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); }
+            50% { box-shadow: 0 8px 35px rgba(244, 114, 182, 0.8); }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Wellbeing Timer Display -->
+    <div class="timer-display" id="timer-display">
+        <i class="fas fa-clock"></i> <span id="timer-text">00:00</span>
+    </div>
+
+    <!-- Wellbeing Check Overlay -->
+    <div class="wellbeing-overlay" id="wellbeing-overlay">
+        <div class="wellbeing-modal">
+            <div class="wellbeing-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="wellbeing-title">Wellbeing Check</h2>
+            <p class="wellbeing-message">
+                You've been studying for <span class="wellbeing-time" id="session-time">30 Minutes</span>
+                <br><br>
+                Taking regular breaks helps improve focus, retention, and overall mental wellbeing. 
+                What would you like to do?
+            </p>
+            <div class="wellbeing-buttons">
+                <button class="wellbeing-btn wellbeing-continue" onclick="continueSession()">
+                    <i class="fas fa-play"></i> Continue Session
+                </button>
+                <button class="wellbeing-btn wellbeing-break" onclick="takeBreak()">
+                    <i class="fas fa-coffee"></i> Take a Break
+                </button>
+            </div>
+            <div class="wellbeing-tips">
+                <h4><i class="fas fa-lightbulb"></i> Quick Wellness Tips:</h4>
+                <ul>
+                    <li>Stretch your neck and shoulders</li>
+                    <li>Take 3 deep breaths</li>
+                    <li>Look away from your screen for 20 seconds</li>
+                    <li>Drink some water</li>
+                    <li>Do a quick mindfulness check-in</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span>JARVIS</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#ask">Ask Advice</a></li>
+                <li><a href="#browse">Browse</a></li>
+                <li><a href="#volunteers">Volunteers</a></li>
+                <li><a href="#empathy-quest" class="empathy-quest">Empathy Quest</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-logo">
+                    <div>
+                        <h1>JARVIS</h1>
+                        <div class="hero-tagline">Where Expertise Meets Empathy</div>
+                    </div>
+                </div>
+                <p class="fade-in-up delay-1">
+                    Your comprehensive AI-powered student support platform. Get personalized advice, 
+                    connect with mentors, and embark on a journey of personal growth and academic excellence.
+                </p>
+                <div class="hero-buttons fade-in-up delay-2">
+                    <a href="#features" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Explore Features
+                    </a>
+                    <a href="#empathy-quest" class="btn btn-secondary">
+                        <i class="fas fa-heart"></i> Start Your Quest
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>About JARVIS</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-content fade-in-up delay-1">
+                <p>
+                    JARVIS (Just A Rather Very Intelligent System) is more than just a platform—it's your 
+                    personal guide through the challenges of student life. We combine cutting-edge AI technology 
+                    with genuine human empathy to create a supportive environment where every student can thrive.
+                </p>
+                <p>
+                    Our mission is to bridge the gap between academic excellence and emotional wellbeing, 
+                    providing tools, resources, and connections that help students navigate their educational 
+                    journey with confidence and resilience.
+                </p>
+                <p>
+                    From personalized study assistance to mental health support, from peer connections to 
+                    career guidance—JARVIS is here to ensure no student feels alone in their journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Features</h2>
+                <div class="divider"></div>
+                <p>Comprehensive tools designed to support every aspect of your student journey</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Assistant</h3>
+                    <p>Get instant, intelligent responses to your academic and personal questions with our advanced chatbot that understands student needs.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Peer Support Network</h3>
+                    <p>Connect with fellow students, share experiences, and get advice from those who understand your challenges.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Mental Health Tools</h3>
+                    <p>Access mindfulness exercises, stress management techniques, and professional mental health resources.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Digital Wellbeing</h3>
+                    <p>Smart reminders and break suggestions to help you maintain a healthy study-life balance.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Support</h3>
+                    <p>Get help with study techniques, exam preparation, and accessing educational resources tailored to your needs.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamified Growth</h3>
+                    <p>Embark on quests, earn wisdom points, and track your personal development through our engaging Empathy Quest system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask for Advice Section -->
+    <section id="ask" class="section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Ask for Advice</h2>
+                <div class="divider"></div>
+                <p>Share your concerns and get personalized advice from our community</p>
+            </div>
+            <div class="contact-form fade-in-up delay-1">
+                <form id="advice-form">
+                    <div class="form-group">
+                        <label for="advice-name">Your Name (Optional)</label>
+                        <input type="text" id="advice-name" placeholder="You can remain anonymous">
+                    </div>
+                    <div class="form-group">
+                        <label for="advice-category">Category</label>
+                        <select id="advice-category">
+                            <option>Academic Stress</option>
+                            <option>Social Anxiety</option>
+                            <option>Time Management</option>
+                            <option>Career Guidance</option>
+                            <option>Mental Health</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="advice-question">Your Question</label>
+                        <textarea id="advice-question" placeholder="Describe your situation and what kind of advice you're looking for..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Question
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browse Advice Section -->
+    <section id="browse" class="section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Browse Advice</h2>
+                <div class="divider"></div>
+                <p>Read advice from our community - you might find answers to questions you didn't know you had</p>
+            </div>
+            
+            <div class="advice-thread fade-in-up delay-1">
+                <div class="question">Q: I'm struggling with procrastination and can't seem to start my assignments until the last minute. Any tips?</div>
+                <div class="answer">A: Try the "2-minute rule" - if something takes less than 2 minutes, do it immediately. For larger tasks, break them into smaller 15-minute chunks. Also, create a dedicated study space away from distractions. - Sarah J., Academic Counselor</div>
+            </div>
+            
+            <div class="advice-thread fade-in-up delay-2">
+                <div class="question">Q: I feel overwhelmed by social situations at university. How can I make friends without feeling anxious?</div>
+                <div class="answer">A: Start small - join study groups or clubs related to your interests. This gives you a natural conversation starter. Remember, most people are understanding and many feel the same way you do. Practice self-compassion and take it one interaction at a time. - Dr. Emily R.</div>
+            </div>
+            
+            <div class="advice-thread fade-in-up delay-3">
+                <div class="question">Q: How do I balance work, studies, and personal life without burning out?</div>
+                <div class="answer">A: Time-blocking is your friend! Schedule specific times for work, study, and relaxation. Don't forget to include buffer time for unexpected tasks. Most importantly, guard your sleep and don't skip meals - your brain needs fuel to function. - Michael C., Peer Mentor</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteers Section -->
+    <section id="volunteers" class="section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Volunteers</h2>
+                <div class="divider"></div>
+                <p>Meet our dedicated team of volunteers who are here to support you on your journey.</p>
+            </div>
+
+            <div class="volunteer-profiles">
+                <div class="volunteer-card fade-in-up delay-1">
+                    <div class="volunteer-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="volunteer-title">Academic Counselor</p>
+                        <p class="volunteer-details">Psychology Graduate + 5 years experience</p>
+                    </div>
+                </div>
+
+                <div class="volunteer-card fade-in-up delay-2">
+                    <div class="volunteer-info">
+                        <h3>Michael Chen</h3>
+                        <p class="volunteer-title">Peer Mentor</p>
+                        <p class="volunteer-details">Computer Science Student + Mental Health Associate</p>
+                    </div>
+                </div>
+
+                <div class="volunteer-card fade-in-up delay-3">
+                    <div class="volunteer-info">
+                        <h3>Dr. Emily Rodriguez</h3>
+                        <p class="volunteer-title">Licensed Therapist</p>
+                        <p class="volunteer-details">Clinical Psychology + Specialists in Student Wellness</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="volunteer-form-container fade-in-up">
+                <h2>Join Our Volunteer Team</h2>
+                <p>Make a difference in students' lives. Apply to become a JARVIS volunteer!</p>
+
+                <form id="volunteer-form" class="volunteer-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="volunteer-first-name">First Name *</label>
+                            <input type="text" id="volunteer-first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="volunteer-last-name">Last Name *</label>
+                            <input type="text" id="volunteer-last-name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="volunteer-email">Email Address *</label>
+                            <input type="email" id="volunteer-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="volunteer-phone">Phone Number</label>
+                            <input type="tel" id="volunteer-phone">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="volunteer-age">Age *</label>
+                            <select id="volunteer-age" required>
+                                <option value="">Select Age Range</option>
+                                <option value="18-24">18-24</option>
+                                <option value="25-34">25-34</option>
+                                <option value="35-44">35-44</option>
+                                <option value="45-54">45-54</option>
+                                <option value="55+">55+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="volunteer-location">Location *</label>
+                            <input type="text" id="volunteer-location" placeholder="City, State/Country" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-education">Highest Education Level *</label>
+                        <select id="volunteer-education" required>
+                            <option value="">Select Education Level</option>
+                            <option value="High School">High School</option>
+                            <option value="Some College">Some College</option>
+                            <option value="Associate Degree">Associate Degree</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="Doctorate">Doctorate</option>
+                            <option value="Professional Degree">Professional Degree</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-field">Field of Study/Expertise *</label>
+                        <input type="text" id="volunteer-field" placeholder="e.g., Psychology, Computer Science, Medicine" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-experience">Relevant Experience (Years) *</label>
+                        <select id="volunteer-experience" required>
+                            <option value="">Select Experience Level</option>
+                            <option value="0-1">0-1 years</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Areas of Interest/Expertise (Select all that apply) *</label>
+                        <div class="interest-grid">
+                            <div class="interest-column">
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Academic Support"> Academic Support
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Mental Health"> Mental Health
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Peer Mentoring"> Peer Mentoring
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Career Guidance"> Career Guidance
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Study Skills"> Study Skills
+                                </label>
+                            </div>
+                            <div class="interest-column">
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Anxiety & Depression"> Anxiety & Depression
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Time Management"> Time Management
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Social Skills"> Social Skills
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Child Support"> Child Support
+                                </label>
+                                <label class="interest-checkbox">
+                                    <input type="checkbox" name="interests" value="Life Coaching"> Life Coaching
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-availability">Availability *</label>
+                        <select id="volunteer-availability" required>
+                            <option value="">Select Availability</option>
+                            <option value="Weekdays">Weekdays</option>
+                            <option value="Weekends">Weekends</option>
+                            <option value="Evenings">Evenings</option>
+                            <option value="Flexible">Flexible</option>
+                            <option value="As Needed">As Needed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-motivation">Why do you want to volunteer with JARVIS? *</label>
+                        <textarea id="volunteer-motivation" rows="4" placeholder="Share your motivation and what you hope to bring to our community..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-experience-desc">Describe your relevant experience working with students or in supportive roles</label>
+                        <textarea id="volunteer-experience-desc" rows="4" placeholder="Tell us about your background in helping others, mentoring, counseling, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-languages">Languages Spoken</label>
+                        <input type="text" id="volunteer-languages" placeholder="e.g., English, Spanish, Mandarin">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volunteer-references">Professional References (Optional)</label>
+                        <textarea id="volunteer-references" rows="3" placeholder="Name, title, and contact information for 1-2 professional references"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empathy Quest Section -->
+    <section id="empathy-quest" class="empathy-quest-section">
+        <div class="container">
+            <div class="empathy-quest-content fade-in-up">
+                <h1 class="empathy-quest-title">
+                    <i class="fas fa-heart"></i> Empathy Quest
+                </h1>
+                <p class="empathy-quest-subtitle">
+                    Embark on a journey of emotional growth, wisdom, and connection. Complete quests, share your thoughts, and unlock the mysteries of personal development!
+                </p>
+                
+                <div class="quest-features">
+                    <div class="quest-feature fade-in-up delay-1">
+                        <div class="quest-feature-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>Daily Quests</h3>
+                        <p>Complete meaningful challenges that promote self-reflection, kindness, and personal growth. Each quest rewards you with wisdom points!</p>
+                    </div>
+                    
+                    <div class="quest-feature fade-in-up delay-2">
+                        <div class="quest-feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Whisper Lounge</h3>
+                        <p>Share your thoughts, wins, and struggles anonymously. Connect with others on similar journeys in a safe, supportive environment.</p>
+                    </div>
+                    
+                    <div class="quest-feature fade-in-up delay-3">
+                        <div class="quest-feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3>Avatar Evolution</h3>
+                        <p>Watch your avatar evolve as you grow! From a simple orb to a magnificent being, your progress is beautifully visualized.</p>
+                    </div>
+                    
+                    <div class="quest-feature fade-in-up delay-1">
+                        <div class="quest-feature-icon">
+                            <i class="fas fa-treasure-chest"></i>
+                        </div>
+                        <h3>JARVIS Vault</h3>
+                        <p>Unlock magical rewards and wisdom from the mysterious vault. Each unlock brings personalized encouragement and insights!</p>
+                    </div>
+                    
+                    <div class="quest-feature fade-in-up delay-2">
+                        <div class="quest-feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Mindful Arcade</h3>
+                        <p>Play relaxing games designed to reduce stress and improve focus. Gaming with purpose for your mental wellbeing!</p>
+                    </div>
+                </div>
+                
+                <button class="quest-launch-button fade-in-up delay-3" id="launch-empathy-quest">
+                    <i class="fas fa-rocket"></i> Launch Empathy Quest
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Get in Touch</h2>
+                <div class="divider"></div>
+                <p>Have questions or need immediate support? We're here to help.</p>
+            </div>
+            <div class="contact-form fade-in-up delay-1">
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>JARVIS</h3>
+                    <p>Where Expertise Meets Empathy. Empowering students through technology and human connection. Your wellbeing is our priority.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#volunteers">Volunteers</a></li>
+                        <li><a href="#empathy-quest">Empathy Quest</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#ask">Ask for Advice</a></li>
+                        <li><a href="#browse">Browse Advice</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Crisis Resources</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@jarvis.edu</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 University Ave, Campus City</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Support Available</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JARVIS Student Support Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Interface -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <h3><i class="fas fa-robot"></i> JARVIS Assistant</h3>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-message bot-message">
+                <div class="message-content">
+                    Hi! I'm JARVIS, your AI assistant. How can I help you today? You can ask me about our services, get study tips, or if you need immediate support. I can also help with academic questions by accessing educational resources!
+                </div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <button class="chat-toggle" id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Empathy Quest Game Panel -->
+    <div id="game-panel" class="game-panel">
+        <div class="panel-header">
+            <h2><i class="fas fa-compass"></i> Empathy Quest</h2>
+            <button id="close-game" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <!-- Avatar Display -->
+        <div class="avatar-section">
+            <div id="user-avatar" class="avatar orb-1">🌟</div>
+            <div class="avatar-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="level-progress" style="width: 0%"></div>
+                </div>
+                <span id="wisdom-points">0 Wisdom Points</span>
+            </div>
+        </div>
+
+        <!-- Main Game Tabs -->
+        <div class="game-tabs">
+            <button class="tab-btn active" data-tab="quests">
+                <i class="fas fa-tasks"></i> Quests
+            </button>
+            <button class="tab-btn" data-tab="lounge">
+                <i class="fas fa-comments"></i> Lounge
+            </button>
+            <button class="tab-btn" data-tab="arcade">
+                <i class="fas fa-gamepad"></i> Arcade
+            </button>
+            <button class="tab-btn" data-tab="vault">
+                <i class="fas fa-treasure-chest"></i> Vault
+            </button>
+        </div>
+
+        <!-- Quests Tab -->
+        <div id="quests" class="game-tab-content active">
+            <div class="quest-card" data-quest="ask-advice">
+                <h3><i class="fas fa-question-circle"></i> Ask for Advice</h3>
+                <p>Share your thoughts and seek guidance from the community</p>
+                <button class="quest-action">Start Quest</button>
+                <div class="quest-reward">+5 <i class="fas fa-star"></i></div>
+            </div>
+            
+            <div class="quest-card" data-quest="daily-reflection">
+                <h3><i class="fas fa-mirror"></i> Daily Reflection</h3>
+                <p>Take a moment to reflect on your day and emotions</p>
+                <button class="quest-action">Reflect</button>
+                <div class="quest-reward">+8 <i class="fas fa-star"></i></div>
+            </div>
+            
+            <div class="quest-card" data-quest="wisdom-dice">
+                <h3><i class="fas fa-dice"></i> Roll the Oracle's Dice</h3>
+                <p>Seek wisdom from the mystical dice of knowledge</p>
+                <button class="quest-action">Roll Dice</button>
+                <div class="quest-reward">+3 <i class="fas fa-star"></i></div>
+            </div>
+            
+            <div class="quest-card" data-quest="kindness-act">
+                <h3><i class="fas fa-heart"></i> Act of Kindness</h3>
+                <p>Perform a random act of kindness and share your experience</p>
+                <button class="quest-action">Share Kindness</button>
+                <div class="quest-reward">+10 <i class="fas fa-star"></i></div>
+            </div>
+        </div>
+
+        <!-- Whisper Lounge Tab -->
+        <div id="lounge" class="game-tab-content">
+            <div class="post-box">
+                <textarea id="new-post" placeholder="Share a win, anxiety, funny moment, or ask for advice... Your words matter here. ✨"></textarea>
+                <button class="post-btn" id="submit-post">
+                    <i class="fas fa-paper-plane"></i> Post Anonymously
+                </button>
+            </div>
+            <div class="posts-container" id="posts-container">
+                <div class="post-item">
+                    <p><strong>Anonymous Explorer:</strong> "Had my first panic attack today, but I remembered to breathe deeply. Small victories count! 💪"</p>
+                    <small style="color: #666;">2 hours ago</small>
+                </div>
+                <div class="post-item">
+                    <p><strong>Wisdom Seeker:</strong> "Does anyone else feel overwhelmed by social media? Taking a break has been so refreshing."</p>
+                    <small style="color: #666;">5 hours ago</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arcade Games Tab -->
+        <div id="arcade" class="game-tab-content">
+            <div class="arcade-game">
+                <div class="game-board">
+                    <h3><i class="fas fa-spa"></i> Mindful Snake</h3>
+                    <p>A relaxing twist on the classic game. Focus on the gentle movement and let your mind unwind.</p>
+                    
+                    <div class="snake-game">
+                        <div class="game-score">Score: <span id="snake-score">0</span></div>
+                        <canvas id="snake-canvas" class="game-canvas" width="300" height="300"></canvas>
+                        
+                        <div class="game-controls">
+                            <button class="game-btn" id="start-snake">Start Game</button>
+                            <button class="game-btn" id="pause-snake">Pause</button>
+                            <button class="game-btn" id="reset-snake">Reset</button>
+                        </div>
+                        
+                        <div class="direction-controls">
+                            <button class="direction-btn" data-direction="up"><i class="fas fa-arrow-up"></i></button>
+                            <button class="direction-btn" data-direction="left"><i class="fas fa-arrow-left"></i></button>
+                            <button class="direction-btn" data-direction="down"><i class="fas fa-arrow-down"></i></button>
+                            <button class="direction-btn" data-direction="right"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                            Use arrow keys or buttons to control. Focus on smooth movements and enjoy the meditative gameplay!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JARVIS Vault Tab -->
+        <div id="vault" class="game-tab-content">
+            <div class="vault-door" id="vault-door">
+                <div class="vault-shine"></div>
+                <div>
+                    <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                    <span>10 Wisdom Points to Open</span>
+                </div>
+            </div>
+            <div class="vault-content hidden" id="vault-content">
+                <!-- Surprise content appears here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Dice Game Modal -->
+    <div id="dice-modal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-crystal-ball"></i> The Oracle's Dice</h3>
+            <p>Seek ancient wisdom from the mystical dice!</p>
+            <div class="dice-container">
+                <div id="dice" class="dice">?</div>
+            </div>
+            <button id="roll-dice" class="quest-action" style="margin: 20px 10px;">
+                <i class="fas fa-dice"></i> Roll for Wisdom
+            </button>
+            <button id="close-dice" class="quest-action" style="background: #666;">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavigation();
+            initializeChat();
+            initializeWellbeingTimer();
+            initializeEmpathyQuest();
+            initializeAnimations();
+            initializeForms();
+        });
+
+        // Navigation functionality
+        function initializeNavigation() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when clicking on a link
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (navLinks) navLinks.classList.remove('active');
+                });
+            });
+
+            // Update active nav link on scroll
+            window.addEventListener('scroll', updateActiveNavLink);
+        }
+
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Form handling
+        function initializeForms() {
+            const adviceForm = document.getElementById('advice-form');
+            const contactForm = document.getElementById('contact-form');
+            const volunteerForm = document.getElementById('volunteer-form');
+
+            if (adviceForm) {
+                adviceForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('Your question has been submitted! Our community will review it and provide thoughtful responses.', 'success');
+                    this.reset();
+                });
+            }
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
+                    this.reset();
+                });
+            }
+
+            if (volunteerForm) {
+                volunteerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Validate at least one interest is selected
+                    const interests = document.querySelectorAll('input[name="interests"]:checked');
+                    if (interests.length === 0) {
+                        showNotification('Please select at least one area of interest', 'error');
+                        return;
+                    }
+                    
+                    // Form is valid, show success message
+                    showNotification('Thank you for your volunteer application! We will review your information and get back to you soon.', 'success');
+                    this.reset();
+                });
+            }
+        }
+
+        // Enhanced chat functionality with academic support
+        function initializeChat() {
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatContainer = document.getElementById('chat-container');
+            const closeChat = document.getElementById('close-chat');
+            const chatInput = document.getElementById('chat-input');
+            const sendMessage = document.getElementById('send-message');
+            const chatMessages = document.getElementById('chat-messages');
+
+            if (chatToggle) {
+                chatToggle.addEventListener('click', () => {
+                    chatContainer.classList.toggle('active');
+                });
+            }
+
+            if (closeChat) {
+                closeChat.addEventListener('click', () => {
+                    chatContainer.classList.remove('active');
+                });
+            }
+
+            function sendChatMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addChatMessage(message, 'user');
+                    chatInput.value = '';
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+                    
+                    // Enhanced response with academic support
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        const response = getEnhancedResponse(message);
+                        addChatMessage(response, 'bot');
+                    }, 1500);
+                }
+            }
+
+            function addChatMessage(message, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${sender}-message`;
+                messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const indicator = document.createElement('div');
+                indicator.className = 'typing-indicator';
+                indicator.id = 'typing-indicator';
+                indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                chatMessages.appendChild(indicator);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function hideTypingIndicator() {
+                const indicator = document.getElementById('typing-indicator');
+                if (indicator) {
+                    indicator.remove();
+                }
+            }
+
+            // Enhanced response function with academic support
+            function getEnhancedResponse(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                // Academic questions - Enhanced to suggest external resources
+                if (lowerMessage.includes('math') || lowerMessage.includes('calculus') || lowerMessage.includes('algebra')) {
+                    return "For math problems, I recommend checking out Khan Academy, Wolfram Alpha, or BYJU'S for step-by-step solutions. Khan Academy offers excellent free video tutorials, while Wolfram Alpha can solve complex equations. Would you like specific study tips for mathematics?";
+                }
+                
+                if (lowerMessage.includes('physics') || lowerMessage.includes('chemistry') || lowerMessage.includes('biology')) {
+                    return "For science subjects, I suggest exploring resources like Khan Academy, Coursera, or BYJU'S which offer comprehensive explanations with visual aids. These platforms provide interactive content that makes complex concepts easier to understand. What specific topic are you struggling with?";
+                }
+                
+                if (lowerMessage.includes('history') || lowerMessage.includes('literature') || lowerMessage.includes('english')) {
+                    return "For humanities subjects, try resources like Crash Course on YouTube, SparkNotes for literature analysis, or Coursera for detailed courses. These platforms offer engaging content that makes learning enjoyable. Are you looking for help with a specific assignment or general study strategies?";
+                }
+                
+                if (lowerMessage.includes('computer') || lowerMessage.includes('programming') || lowerMessage.includes('coding')) {
+                    return "For computer science and programming, I recommend Codecademy, freeCodeCamp, or GeeksforGeeks. These platforms offer hands-on coding practice and projects. GitHub is also great for collaboration and showcasing your work. What programming language are you interested in learning?";
+                }
+
+                // Mental health and emotional support
+                if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('worried')) {
+                    return "I understand you're feeling anxious. Try the 4-7-8 breathing technique: breathe in for 4, hold for 7, out for 8. Also, try grounding yourself by naming 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste. Remember, anxiety is temporary and manageable. Would you like to explore our Empathy Quest for mindful activities?";
+                }
+                
+                if (lowerMessage.includes('depressed') || lowerMessage.includes('sad') || lowerMessage.includes('down')) {
+                    return "I hear that you're going through a tough time. Your feelings are valid, and it's brave of you to reach out. Small steps matter - even getting up, taking a shower, or eating a meal can be victories. Remember that this feeling is temporary, and you don't have to face it alone. Consider reaching out to a counselor or trusted friend. What's one small thing that might help you feel a tiny bit better right now?";
+                }
+                
+                if (lowerMessage.includes('stress') || lowerMessage.includes('overwhelmed') || lowerMessage.includes('pressure')) {
+                    return "Feeling overwhelmed is your mind's way of telling you there's a lot going on. Try the 'brain dump' technique - write down everything on your mind, then categorize items as: urgent/important, important/not urgent, urgent/not important, and neither. Focus only on the urgent AND important items first. What's the most pressing thing causing you stress right now?";
+                }
+
+                // Study and academic support
+                if (lowerMessage.includes('study') || lowerMessage.includes('exam') || lowerMessage.includes('test')) {
+                    return "Great question about studying! Here are proven techniques: Use the Pomodoro Technique (25 min focused study, 5 min break), practice active recall instead of just re-reading, and try the Feynman Technique - explain concepts in simple terms. For specific subjects, I can recommend resources like Khan Academy, Coursera, or BYJU'S. What subject are you studying?";
+                }
+                
+                if (lowerMessage.includes('procrastination') || lowerMessage.includes('procrastinate') || lowerMessage.includes('motivation')) {
+                    return "Procrastination often stems from perfectionism or feeling overwhelmed. Try the '2-minute rule' - if something takes less than 2 minutes, do it now. For bigger tasks, commit to just 10 minutes - often you'll continue once you start. Break large projects into tiny, specific steps. What's one task you've been putting off that we could break down together?";
+                }
+                
+                if (lowerMessage.includes('time management') || lowerMessage.includes('schedule') || lowerMessage.includes('organize')) {
+                    return "Time management improves with practice! Try time-blocking: assign specific time slots for different activities. Use the Eisenhower Matrix to prioritize tasks. Plan your week on Sunday, and review daily. Remember to include buffer time and self-care - they're not optional! What's your biggest time management challenge?";
+                }
+
+                // Social and relationship support
+                if (lowerMessage.includes('friends') || lowerMessage.includes('social') || lowerMessage.includes('lonely')) {
+                    return "Making connections can feel challenging, but you're not alone. Start with shared interests - join clubs, study groups, or activities you enjoy. Be genuinely curious about others and ask open-ended questions. Remember, quality over quantity - one good friend is worth more than many superficial connections. What interests or hobbies do you have that might help you connect with like-minded people?";
+                }
+
+                // Career and future planning
+                if (lowerMessage.includes('career') || lowerMessage.includes('job') || lowerMessage.includes('future')) {
+                    return "Career planning can feel overwhelming, but taking it step by step helps! Start by exploring your values, interests, and strengths. Informational interviews with professionals can provide valuable insights. Internships, volunteering, and part-time work offer hands-on experience. Remember, career paths aren't always linear - it's okay to explore and change direction. What field interests you?";
+                }
+
+                // Sleep and health
+                if (lowerMessage.includes('sleep') || lowerMessage.includes('tired') || lowerMessage.includes('insomnia')) {
+                    return "Sleep is crucial for your mental health, memory, and academic performance. Create a consistent sleep schedule, avoid screens 1 hour before bed, keep your room cool and dark, and try relaxation techniques. If racing thoughts keep you awake, try journaling or the '4-7-8' breathing technique. Limit caffeine after 2 PM. How many hours of sleep are you typically getting?";
+                }
+
+                // Empathy Quest related
+                if (lowerMessage.includes('empathy quest') || lowerMessage.includes('game') || lowerMessage.includes('quest')) {
+                    return "Empathy Quest is designed to support your emotional growth through meaningful activities! You can complete daily quests for wisdom points, share thoughts anonymously in the Whisper Lounge, play mindful games in the Arcade, and unlock rewards in the JARVIS Vault. Each activity promotes self-reflection, kindness, and connection. Would you like me to help you get started?";
+                }
+
+                // Default supportive responses
+                const defaultResponses = [
+                    "Thank you for reaching out. Could you tell me more about what's on your mind? I'm here to listen and provide support in whatever way I can.",
+                    "I'm here to help. What would be most helpful for you right now - emotional support, practical advice, academic resources, or just someone to listen?",
+                    "Every concern is valid, and I'm glad you're comfortable sharing with me. Can you help me understand what you're experiencing so I can better support you?",
+                    "It sounds like there's something important you'd like to discuss. I'm here to provide a supportive space. What's weighing on your mind?",
+                    "I appreciate you opening up. Whether it's academic stress, personal challenges, or just need someone to talk to, I'm here. What would be most helpful right now?"
+                ];
+                
+                return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            }
+
+            if (sendMessage) {
+                sendMessage.addEventListener('click', sendChatMessage);
+            }
+            
+            if (chatInput) {
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChatMessage();
+                    }
+                });
+            }
+        }
+
+        // Fixed wellbeing timer functionality
+        function initializeWellbeingTimer() {
+            let sessionStartTime = Date.now();
+            let sessionTimer = null;
+            let wellbeingCheckShown = false;
+            let timerPaused = false;
+            let checkInterval = 120000; // 2 minutes for demo (30*60*1000 for 30 minutes in production)
+            
+            function updateTimer() {
+                if (timerPaused) return;
+                
+                const elapsed = Date.now() - sessionStartTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                
+                const timerText = document.getElementById('timer-text');
+                if (timerText) {
+                    timerText.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                // Show wellbeing check after interval
+                if (elapsed >= checkInterval && !wellbeingCheckShown) {
+                    showWellbeingCheck(minutes);
+                    wellbeingCheckShown = true;
+                }
+            }
+            
+            function showWellbeingCheck(minutes) {
+                const overlay = document.getElementById('wellbeing-overlay');
+                const sessionTime = document.getElementById('session-time');
+                
+                if (sessionTime) sessionTime.textContent = `${minutes} Minutes`;
+                if (overlay) overlay.classList.add('active');
+                timerPaused = true;
+            }
+            
+            // Global functions for wellbeing controls
+            window.continueSession = function() {
+                const overlay = document.getElementById('wellbeing-overlay');
+                if (overlay) overlay.classList.remove('active');
+                timerPaused = false;
+                wellbeingCheckShown = false;
+                sessionStartTime = Date.now(); // Reset the timer
+            };
+            
+            window.takeBreak = function() {
+                const overlay = document.getElementById('wellbeing-overlay');
+                const timerDisplay = document.getElementById('timer-display');
+                
+                if (overlay) overlay.classList.remove('active');
+                if (timerDisplay) timerDisplay.classList.add('hidden');
+                clearInterval(sessionTimer);
+                timerPaused = true;
+                
+                showNotification('Great choice! Take a 10-15 minute break. We\'ll be here when you get back! 🌟', 'success');
+                
+                // Restart timer after break simulation (15 seconds for demo)
+                setTimeout(() => {
+                    if (timerDisplay) timerDisplay.classList.remove('hidden');
+                    sessionStartTime = Date.now();
+                    wellbeingCheckShown = false;
+                    timerPaused = false;
+                    sessionTimer = setInterval(updateTimer, 1000);
+                    showNotification('Welcome back! Hope you feel refreshed! 💚', 'success');
+                }, 15000); // 15 seconds for demo
+            };
+            
+            // Start the timer
+            sessionTimer = setInterval(updateTimer, 1000);
+        }
+
+        // Empathy Quest Game functionality
+        function initializeEmpathyQuest() {
+            // Game State
+            const gameState = {
+                wisdomPoints: 0,
+                level: 1,
+                activeQuests: [],
+                completedQuests: []
+            };
+
+            // Snake Game Variables
+            let snakeGame = {
+                canvas: null,
+                ctx: null,
+                snake: [],
+                food: {},
+                direction: 'right',
+                gameRunning: false,
+                gamePaused: false,
+                score: 0,
+                gameSpeed: 200
+            };
+
+            // DOM Elements
+            const launchEmpathyQuest = document.getElementById('launch-empathy-quest');
+            const gamePanel = document.getElementById('game-panel');
+            const closeGame = document.getElementById('close-game');
+            const vaultDoor = document.getElementById('vault-door');
+            const vaultContent = document.getElementById('vault-content');
+            const wisdomPointsDisplay = document.getElementById('wisdom-points');
+            const levelProgress = document.getElementById('level-progress');
+            const userAvatar = document.getElementById('user-avatar');
+
+            // Tab System
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.game-tab-content');
+
+            // Dice Game
+            const diceModal = document.getElementById('dice-modal');
+            const dice = document.getElementById('dice');
+            const rollDice = document.getElementById('roll-dice');
+            const closeDice = document.getElementById('close-dice');
+
+            // Posts
+            const newPostTextarea = document.getElementById('new-post');
+            const submitPost = document.getElementById('submit-post');
+            const postsContainer = document.getElementById('posts-container');
+
+            // Snake Game Elements
+            const snakeCanvas = document.getElementById('snake-canvas');
+            const snakeScore = document.getElementById('snake-score');
+            const startSnake = document.getElementById('start-snake');
+            const pauseSnake = document.getElementById('pause-snake');
+            const resetSnake = document.getElementById('reset-snake');
+            const directionButtons = document.querySelectorAll('.direction-btn');
+
+            // Event Listeners
+            if (launchEmpathyQuest) {
+                launchEmpathyQuest.addEventListener('click', toggleGamePanel);
+            }
+            if (closeGame) {
+                closeGame.addEventListener('click', toggleGamePanel);
+            }
+            if (vaultDoor) {
+                vaultDoor.addEventListener('click', openVault);
+            }
+
+            // Tab Switching
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+
+            // Quest System
+            document.querySelectorAll('.quest-action').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const questCard = this.closest('.quest-card');
+                    const questId = questCard.getAttribute('data-quest');
+                    
+                    if (questId === 'wisdom-dice') {
+                        openDiceModal();
+                    } else {
+                        completeQuest(questId);
+                    }
+                });
+            });
+
+            // Dice Game
+            if (rollDice) rollDice.addEventListener('click', rollTheDice);
+            if (closeDice) closeDice.addEventListener('click', closeDiceModal);
+
+            // Posts
+            if (submitPost) submitPost.addEventListener('click', addPost);
+
+            // Snake Game Event Listeners
+            if (startSnake) startSnake.addEventListener('click', startSnakeGame);
+            if (pauseSnake) pauseSnake.addEventListener('click', pauseSnakeGame);
+            if (resetSnake) resetSnake.addEventListener('click', resetSnakeGame);
+
+            // Direction buttons for mobile
+            directionButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const direction = btn.getAttribute('data-direction');
+                    changeSnakeDirection(direction);
+                });
+            });
+
+            // Keyboard controls for snake
+            document.addEventListener('keydown', (e) => {
+                if (!snakeGame.gameRunning) return;
+                
+                switch(e.key) {
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        changeSnakeDirection('up');
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        changeSnakeDirection('down');
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        changeSnakeDirection('left');
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        changeSnakeDirection('right');
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        pauseSnakeGame();
+                        break;
+                }
+            });
+
+            // Avatar interactions
+            if (userAvatar) {
+                userAvatar.addEventListener('click', function() {
+                    this.classList.add('avatar-pulse');
+                    setTimeout(() => {
+                        this.classList.remove('avatar-pulse');
+                    }, 1000);
+                });
+                
+                userAvatar.addEventListener('mouseenter', function() {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'avatar-tooltip';
+                    tooltip.textContent = `Level ${gameState.level} - ${gameState.wisdomPoints} points`;
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        bottom: -30px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: var(--dark-gray);
+                        color: var(--white);
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                        font-size: 0.8rem;
+                        white-space: nowrap;
+                        z-index: 1000;
+                    `;
+                    this.appendChild(tooltip);
+                });
+                
+                userAvatar.addEventListener('mouseleave', function() {
+                    const tooltip = this.querySelector('.avatar-tooltip');
+                    if (tooltip) tooltip.remove();
+                });
+            }
+
+            // Close modal when clicking outside
+            if (diceModal) {
+                diceModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeDiceModal();
+                    }
+                });
+            }
+
+            // Functions
+            function toggleGamePanel() {
+                if (gamePanel) {
+                    gamePanel.classList.toggle('active');
+                    if (gamePanel.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                        // Initialize snake game when panel opens
+                        if (!snakeGame.canvas) {
+                            initSnakeGame();
+                        }
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            }
+
+            function switchTab(tabId) {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                const targetTab = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+                const targetContent = document.getElementById(tabId);
+                
+                if (targetTab) targetTab.classList.add('active');
+                if (targetContent) targetContent.classList.add('active');
+                
+                // Initialize snake game when arcade tab is opened
+                if (tabId === 'arcade' && !snakeGame.canvas) {
+                    setTimeout(() => {
+                        initSnakeGame();
+                    }, 100);
+                }
+            }
+
+            function completeQuest(questId) {
+                // Prevent re-completing
+                if (gameState.completedQuests.includes(questId)) {
+                    showNotification('Quest already completed!', 'info');
+                    return;
+                }
+
+                // Add reward
+                let reward = 0;
+                let questName = '';
+                switch(questId) {
+                    case 'ask-advice':
+                        reward = 5;
+                        questName = 'Ask for Advice';
+                        break;
+                    case 'daily-reflection':
+                        reward = 8;
+                        questName = 'Daily Reflection';
+                        break;
+                    case 'wisdom-dice':
+                        reward = 3;
+                        questName = 'Oracle\'s Dice';
+                        break;
+                    case 'kindness-act':
+                        reward = 10;
+                        questName = 'Act of Kindness';
+                        break;
+                    default:
+                        reward = 5;
+                        questName = 'Mystery Quest';
+                }
+
+                gameState.wisdomPoints += reward;
+                gameState.completedQuests.push(questId);
+
+                // Visual feedback
+                const questCard = document.querySelector(`.quest-card[data-quest="${questId}"]`);
+                if (questCard) {
+                    const questButton = questCard.querySelector('.quest-action');
+                    if (questButton) {
+                        questButton.textContent = 'Completed ✓';
+                        questButton.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                        questButton.disabled = true;
+                    }
+                }
+
+                // Update progress
+                updateProgress();
+                checkLevelUp();
+                
+                showNotification(`${questName} completed! +${reward} Wisdom Points`, 'success');
+            }
+
+            function updateProgress() {
+                if (wisdomPointsDisplay) {
+                    wisdomPointsDisplay.textContent = `${gameState.wisdomPoints} Wisdom Points`;
+                }
+                const progressPercent = (gameState.wisdomPoints % 30) / 30 * 100;
+                if (levelProgress) {
+                    levelProgress.style.width = `${progressPercent}%`;
+                }
+            }
+
+            function checkLevelUp() {
+                const newLevel = Math.floor(gameState.wisdomPoints / 30) + 1;
+                if (newLevel > gameState.level && newLevel <= 4) {
+                    gameState.level = newLevel;
+                    updateAvatar();
+                    showNotification(`Level Up! You reached Level ${newLevel}!`, 'level-up');
+                    
+                    // Special level-up animation
+                    if (userAvatar) {
+                        userAvatar.style.transform = 'scale(1.3) rotate(360deg)';
+                        setTimeout(() => {
+                            userAvatar.style.transform = '';
+                        }, 1000);
+                    }
+                }
+            }
+
+            function updateAvatar() {
+                if (userAvatar) {
+                    userAvatar.className = 'avatar'; // Reset classes
+                    userAvatar.classList.add(`orb-${gameState.level}`);
+                }
+            }
+
+            function openVault() {
+                if (gameState.wisdomPoints < 10) {
+                    showNotification('You need 10 Wisdom Points to open the vault!', 'error');
+                    return;
+                }
+                
+                gameState.wisdomPoints -= 10;
+                updateProgress();
+                
+                // Show opening animation
+                if (vaultDoor) {
+                    vaultDoor.innerHTML = '<div class="vault-opening"><i class="fas fa-spinner fa-spin"></i><br>Opening...</div>';
+                }
+                
+                setTimeout(() => {
+                    // Show random vault content
+                    const contents = [
+                        {
+                            icon: "fas fa-heart",
+                            text: "You're doing amazing! Your journey of growth inspires others. Keep shining! ✨"
+                        },
+                        {
+                            icon: "fas fa-leaf",
+                            text: "Today's wisdom: Take three deep breaths when you feel overwhelmed. You've got this! 🌿"
+                        },
+                        {
+                            icon: "fas fa-gift",
+                            text: "Random act of kindness: Send an encouraging message to someone today! 💝"
+                        },
+                        {
+                            icon: "fas fa-star",
+                            text: "Mystery reward unlocked! You've gained the power of inner peace meditation! 🧘‍♀️"
+                        },
+                        {
+                            icon: "fas fa-rainbow",
+                            text: "Remember: Progress isn't always linear. Every small step counts towards your growth! 🌈"
+                        }
+                    ];
+                    
+                    const randomContent = contents[Math.floor(Math.random() * contents.length)];
+                    
+                    if (vaultDoor) vaultDoor.classList.add('hidden');
+                    if (vaultContent) {
+                        vaultContent.classList.remove('hidden');
+                        vaultContent.innerHTML = `
+                            <i class="${randomContent.icon}" style="font-size: 3rem; margin-bottom: 15px; display: block; color: var(--coral);"></i>
+                            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">${randomContent.text}</p>
+                            <button onclick="resetVault()" style="padding: 10px 20px; background: linear-gradient(135deg, var(--deep-teal), var(--purple)); color: white; border: none; border-radius: 20px; cursor: pointer;">
+                                <i class="fas fa-redo"></i> Close Vault
+                            </button>
+                        `;
+                    }
+                    
+                    showNotification('Vault opened! Wisdom revealed!', 'success');
+                }, 2000);
+            }
+
+            window.resetVault = function() {
+                if (vaultContent) vaultContent.classList.add('hidden');
+                if (vaultDoor) {
+                    vaultDoor.classList.remove('hidden');
+                    vaultDoor.innerHTML = `
+                        <div class="vault-shine"></div>
+                        <div>
+                            <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                            <span>10 Wisdom Points to Open</span>
+                        </div>
+                    `;
+                }
+            };
+
+            function openDiceModal() {
+                if (diceModal) {
+                    diceModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeDiceModal() {
+                if (diceModal) {
+                    diceModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            function rollTheDice() {
+                if (dice && rollDice) {
+                    dice.textContent = '🎲';
+                    dice.style.animation = 'spin 0.5s linear 4';
+                    rollDice.disabled = true;
+                    rollDice.textContent = 'Rolling...';
+                    
+                    setTimeout(() => {
+                        const wisdom = [
+                            {
+                                number: 1,
+                                text: "Progress over perfection - every step forward matters, no matter how small! 🌟"
+                            },
+                            {
+                                number: 2,
+                                text: "Ask for help when needed - strength lies in knowing when to lean on others! 🤝"
+                            },
+                            {
+                                number: 3,
+                                text: "Small steps still move you forward - consistency beats intensity! 🚶‍♀️"
+                            },
+                            {
+                                number: 4,
+                                text: "Your feelings are valid - honor your emotions, they're your inner compass! 💙"
+                            },
+                            {
+                                number: 5,
+                                text: "Celebrate small wins - acknowledge your victories, they fuel your journey! 🎉"
+                            },
+                            {
+                                number: 6,
+                                text: "Rest is productive too - self-care isn't selfish, it's essential! 😴"
+                            }
+                        ];
+                        
+                        const randomWisdom = wisdom[Math.floor(Math.random() * wisdom.length)];
+                        dice.textContent = randomWisdom.number;
+                        dice.style.animation = '';
+                        rollDice.disabled = false;
+                        rollDice.innerHTML = '<i class="fas fa-dice"></i> Roll Again';
+                        
+                        // Show wisdom
+                        setTimeout(() => {
+                            showWisdomModal(randomWisdom);
+                            completeQuest('wisdom-dice');
+                        }, 800);
+                    }, 2000);
+                }
+            }
+
+            function showWisdomModal(wisdom) {
+                const wisdomDiv = document.createElement('div');
+                wisdomDiv.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, var(--gold), var(--coral));
+                    color: var(--white);
+                    padding: 30px;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                    z-index: 3000;
+                    text-align: center;
+                    max-width: 400px;
+                    animation: modalPop 0.5s ease;
+                    border: 4px solid var(--white);
+                `;
+                
+                wisdomDiv.innerHTML = `
+                    <h3 style="margin-bottom: 20px;">
+                        <i class="fas fa-scroll"></i> Ancient Wisdom #${wisdom.number}
+                    </h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                        ${wisdom.text}
+                    </p>
+                    <button onclick="this.parentElement.remove()" style="
+                        background: var(--white);
+                        color: var(--deep-teal);
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 20px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">
+                        <i class="fas fa-heart"></i> Thank You
+                    </button>
+                `;
+                
+                document.body.appendChild(wisdomDiv);
+                
+                // Auto remove after 8 seconds
+                setTimeout(() => {
+                    if (wisdomDiv.parentElement) {
+                        wisdomDiv.remove();
+                    }
+                }, 8000);
+            }
+
+            function addPost() {
+                if (newPostTextarea) {
+                    const postText = newPostTextarea.value.trim();
+                    if (!postText) {
+                        showNotification('Please write something to share!', 'error');
+                        return;
+                    }
+
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'post-item';
+                    postDiv.innerHTML = `
+                        <p><strong>Anonymous ${getRandomTitle()}:</strong> "${postText}"</p>
+                        <small style="color: #666;">Just now</small>
+                    `;
+                    
+                    if (postsContainer) {
+                        postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+                    }
+                    newPostTextarea.value = '';
+                    
+                    // Reward for posting
+                    gameState.wisdomPoints += 3;
+                    updateProgress();
+                    checkLevelUp();
+                    
+                    showNotification('Post shared! +3 Wisdom Points for opening up!', 'success');
+                }
+            }
+
+            function getRandomTitle() {
+                const titles = [
+                    'Explorer', 'Seeker', 'Wanderer', 'Dreamer', 'Thinker',
+                    'Warrior', 'Sage', 'Guardian', 'Voyager', 'Mystic'
+                ];
+                return titles[Math.floor(Math.random() * titles.length)];
+            }
+
+            // Snake Game Functions
+            function initSnakeGame() {
+                snakeGame.canvas = snakeCanvas;
+                if (snakeGame.canvas) {
+                    snakeGame.ctx = snakeGame.canvas.getContext('2d');
+                    resetSnakeGameState();
+                }
+            }
+
+            function resetSnakeGameState() {
+                snakeGame.snake = [
+                    {x: 150, y: 150},
+                    {x: 140, y: 150},
+                    {x: 130, y: 150}
+                ];
+                snakeGame.direction = 'right';
+                snakeGame.score = 0;
+                snakeGame.gameRunning = false;
+                snakeGame.gamePaused = false;
+                generateFood();
+                updateSnakeScore();
+                drawSnakeGame();
+            }
+
+            function generateFood() {
+                snakeGame.food = {
+                    x: Math.floor(Math.random() * 30) * 10,
+                    y: Math.floor(Math.random() * 30) * 10
+                };
+                
+                // Make sure food doesn't spawn on snake
+                for (let segment of snakeGame.snake) {
+                    if (segment.x === snakeGame.food.x && segment.y === snakeGame.food.y) {
+                        generateFood();
+                        break;
+                    }
+                }
+            }
+
+            function startSnakeGame() {
+                if (!snakeGame.gameRunning && startSnake) {
+                    snakeGame.gameRunning = true;
+                    snakeGame.gamePaused = false;
+                    startSnake.textContent = 'Running...';
+                    startSnake.disabled = true;
+                    if (pauseSnake) pauseSnake.disabled = false;
+                    snakeGameLoop();
+                }
+            }
+
+            function pauseSnakeGame() {
+                if (snakeGame.gameRunning && pauseSnake) {
+                    snakeGame.gamePaused = !snakeGame.gamePaused;
+                    pauseSnake.textContent = snakeGame.gamePaused ? 'Resume' : 'Pause';
+                    
+                    if (!snakeGame.gamePaused) {
+                        snakeGameLoop();
+                    }
+                }
+            }
+
+            function resetSnakeGame() {
+                snakeGame.gameRunning = false;
+                snakeGame.gamePaused = false;
+                if (startSnake) {
+                    startSnake.textContent = 'Start Game';
+                    startSnake.disabled = false;
+                }
+                if (pauseSnake) {
+                    pauseSnake.textContent = 'Pause';
+                    pauseSnake.disabled = true;
+                }
+                resetSnakeGameState();
+            }
+
+            function changeSnakeDirection(newDirection) {
+                if (!snakeGame.gameRunning || snakeGame.gamePaused) return;
+                
+                const opposites = {
+                    'up': 'down',
+                    'down': 'up',
+                    'left': 'right',
+                    'right': 'left'
+                };
+                
+                if (newDirection !== opposites[snakeGame.direction]) {
+                    snakeGame.direction = newDirection;
+                }
+            }
+
+            function moveSnake() {
+                const head = {...snakeGame.snake[0]};
+                
+                switch(snakeGame.direction) {
+                    case 'up':
+                        head.y -= 10;
+                        break;
+                    case 'down':
+                        head.y += 10;
+                        break;
+                    case 'left':
+                        head.x -= 10;
+                        break;
+                    case 'right':
+                        head.x += 10;
+                        break;
+                }
+                
+                snakeGame.snake.unshift(head);
+                
+                // Check if food is eaten
+                if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
+                    snakeGame.score += 10;
+                    updateSnakeScore();
+                    generateFood();
+                    
+                    // Award wisdom points for playing mindfully
+                    if (snakeGame.score % 50 === 0) {
+                        gameState.wisdomPoints += 2;
+                        updateProgress();
+                        checkLevelUp();
+                        showNotification('Mindful gaming! +2 Wisdom Points', 'success');
+                    }
+                } else {
+                    snakeGame.snake.pop();
+                }
+            }
+
+            function checkSnakeCollision() {
+                const head = snakeGame.snake[0];
+                
+                // Wall collision
+                if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 300) {
+                    return true;
+                }
+                
+                // Self collision
+                for (let i = 1; i < snakeGame.snake.length; i++) {
+                    if (head.x === snakeGame.snake[i].x && head.y === snakeGame.snake[i].y) {
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+
+            function drawSnakeGame() {
+                if (!snakeGame.ctx) return;
+                
+                const ctx = snakeGame.ctx;
+                
+                // Clear canvas
+                ctx.fillStyle = '#f0f8ff';
+                ctx.fillRect(0, 0, 300, 300);
+                
+                // Draw snake
+                snakeGame.snake.forEach((segment, index) => {
+                    if (index === 0) {
+                        // Snake head
+                        ctx.fillStyle = '#52d681';
+                    } else {
+                        ctx.fillStyle = '#40916c';
+                    }
+                    ctx.fillRect(segment.x, segment.y, 10, 10);
+                    ctx.strokeStyle = '#2d6e47';
+                    ctx.strokeRect(segment.x, segment.y, 10, 10);
+                });
+                
+                // Draw food
+                ctx.fillStyle = '#ff6b6b';
+                ctx.fillRect(snakeGame.food.x, snakeGame.food.y, 10, 10);
+                ctx.strokeStyle = '#e55555';
+                ctx.strokeRect(snakeGame.food.x, snakeGame.food.y, 10, 10);
+            }
+
+            function updateSnakeScore() {
+                if (snakeScore) {
+                    snakeScore.textContent = snakeGame.score;
+                }
+            }
+
+            function snakeGameLoop() {
+                if (!snakeGame.gameRunning || snakeGame.gamePaused) return;
+                
+                moveSnake();
+                
+                if (checkSnakeCollision()) {
+                    gameOver();
+                    return;
+                }
+                
+                drawSnakeGame();
+                
+                setTimeout(() => {
+                    snakeGameLoop();
+                }, snakeGame.gameSpeed);
+            }
+
+            function gameOver() {
+                snakeGame.gameRunning = false;
+                if (startSnake) {
+                    startSnake.textContent = 'Game Over - Restart';
+                    startSnake.disabled = false;
+                }
+                if (pauseSnake) {
+                    pauseSnake.disabled = true;
+                }
+                
+                // Award some wisdom points for playing
+                const basePoints = Math.floor(snakeGame.score / 20);
+                if (basePoints > 0) {
+                    gameState.wisdomPoints += basePoints;
+                    updateProgress();
+                    checkLevelUp();
+                    showNotification(`Game Over! You earned ${basePoints} Wisdom Points for mindful gaming!`, 'success');
+                }
+            }
+
+            // Initialize game state
+            updateProgress();
+            updateAvatar();
+            
+            // Welcome animation
+            setTimeout(() => {
+                if (!gamePanel || !gamePanel.classList.contains('active')) {
+                    showNotification('Welcome to JARVIS! Try the Empathy Quest for a mindful journey! 🌟', 'info');
+                }
+            }, 3000);
+        }
+
+        // Global notification function with enhanced styling
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 15px;
+                color: var(--white);
+                font-weight: 600;
+                z-index: 5000;
+                max-width: 350px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+                animation: slideIn 0.5s ease;
+            `;
+            
+            switch(type) {
+                case 'success':
+                    notification.style.background = 'linear-gradient(135deg, var(--emerald) 0%, var(--ocean-teal) 100%)';
+                    notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+                    break;
+                case 'error':
+                    notification.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                    notification.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+                    break;
+                case 'level-up':
+                    notification.style.background = 'linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%)';
+                    notification.innerHTML = `<i class="fas fa-crown"></i> ${message}`;
+                    notification.style.animation = 'levelUpGlow 1s ease-in-out';
+                    break;
+                default:
+                    notification.style.background = 'linear-gradient(135deg, var(--primary) 0%, var(--ocean-teal) 100%)';
+                    notification.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+            }
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.5s ease forwards';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 500);
+            }, 4000);
+        }
+
+        // Animation functionality
+        function initializeAnimations() {
+            // Fade in animations on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in, .fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add CSS keyframes for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+
+            @keyframes levelUpGlow {
+                0%, 100% { 
+                    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); 
+                }
+                50% { 
+                    box-shadow: 0 8px 35px rgba(244, 114, 182, 0.8); 
+                }
+            }
+
+            @keyframes modalPop {
+                from {
+                    transform: translate(-50%, -50%) scale(0.5);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .fade-in-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize everything
+        console.log('JARVIS Website initialized successfully! 🚀');
+    </script>
+</body>
+</html>
